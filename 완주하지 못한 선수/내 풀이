@@ -5,3 +5,14 @@ def solution(participant, completion):
             participant.remove(x)
 
     return participant[0]
+
+# 정확성, 효율성 테스트 모두 통과한 코드
+from collections import Counter
+
+def solution(participant, completion):
+    part = Counter(participant)
+    comp = Counter(completion)
+
+    for x in participant:
+      if part[x] - comp[x] != 0:
+        return x
