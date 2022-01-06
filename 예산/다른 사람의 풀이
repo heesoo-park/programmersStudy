@@ -1,0 +1,18 @@
+def solution(d, budget):
+    d.sort()
+    while budget < sum(d):
+        # 마지막 요소가 삭제됨 (가장 큰 숫자)
+        d.pop()
+    return len(d)
+    
+#sum 함수를 사용하지 않고 푸는 방법
+def solution(d, budget):
+    d.sort()
+    cnt = 0
+    for i in d :
+        budget -= i
+        if budget < 0 :
+               break
+        cnt += 1
+    answer = cnt
+    return answer
