@@ -5,3 +5,10 @@ def strange_sort(strings, n):
 def solution(strings, n):
     # 위와 같은 의미이지만 문법에서의 약간 차이가 있는 코드
     return sorted(strings, key = lambda x : (x[n],x))
+
+def solution(strings, n):
+    # 위와 같은 의미이지만 문법에서의 약간 차이가 있는 코드
+    answer = sorted(strings)
+    answer = sorted(answer, key=lambda x : x[n])
+    
+    return answer
