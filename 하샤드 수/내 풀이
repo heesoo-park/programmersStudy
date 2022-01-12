@@ -1,0 +1,8 @@
+def solution(x):
+    init_x = x
+    sum_digit = 0
+    while x/10 > 0:
+      sum_digit += x%10
+      x = x//10
+    
+    return True if init_x%sum_digit == 0 else False
