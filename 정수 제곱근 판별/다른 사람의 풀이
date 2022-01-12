@@ -1,0 +1,9 @@
+# math라이브러리를 가져와서 sqrt함수를 사용한 코드
+def nextSqure(n):
+    from math import sqrt
+    return -1 if sqrt(n) % 1 else (sqrt(n)+1)**2
+
+# 내장함수인 pow를 사용한 코드
+def nextSqure(n):
+    sqrt = pow(n, 0.5)
+    return pow(sqrt + 1, 2) if sqrt == int(sqrt) else -1
