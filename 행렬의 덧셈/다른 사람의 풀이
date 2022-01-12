@@ -1,0 +1,4 @@
+def sumMatrix(A,B):
+    # 뒤쪽 zip함수에서 행을 꺼내고 앞쪽 zip함수에서 열을 꺼내서 더하고 리스트에 넣음
+    answer = [[c + d for c, d in zip(a, b)] for a, b in zip(A,B)]
+    return answer
