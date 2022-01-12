@@ -1,0 +1,4 @@
+# 가장 작은 숫자보다 큰 숫자들은 다 리스트에 넣고 return
+# 구버전 문제에 대한 답이라서 지금 내가 푼거에 넣으면 에러가 남
+def rm_small(mylist):
+    return [i for i in mylist if i > min(mylist)]
