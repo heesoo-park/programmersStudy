@@ -1,0 +1,10 @@
+def solution(arr):
+    # arr리스트에 들어있는 요소 개수만큼 반복
+    for j in range(len(arr)-1):
+      # 앞에서부터 2개씩 최소공배수를 구해서 다음 요소와 비교될 인덱스에 구한 최소공배수를 넣기
+      for i in range(max(arr[j],arr[j+1]),(arr[j]*arr[j+1])+1):
+        if i%arr[j] == 0 and i%arr[j+1] == 0:
+          arr[j+1] = i
+          break
+    #가장 마지막 요소가 모든 요소에 대한 최소공배수이므로 return
+    return arr[-1]
