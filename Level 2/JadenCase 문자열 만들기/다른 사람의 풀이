@@ -1,0 +1,21 @@
+# 문자열을 다른 문자열로 복사하면서 문제를 해결한 코드
+def solution(s):
+    answer = ""
+    # 새로운 단어가 시작할 때마다 True로 바뀌는 flag변수
+    flag = True
+    for st in s:
+        if st == " ":
+            flag = True
+            answer += st
+            continue
+
+        if flag:
+            flag = False
+            if st.isalpha():
+                answer += st.upper()
+            else:
+                answer += st
+        else:
+            answer += st.lower()
+
+    return answer
