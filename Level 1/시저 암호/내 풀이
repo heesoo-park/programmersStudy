@@ -1,0 +1,16 @@
+def solution(s, n):
+    answer = ''
+
+    for i in range(len(s)):
+      temp = s[i]
+
+      if s[i] == ' ':
+        answer+= ' '
+
+      if temp.isupper():
+        answer += chr(ord(temp)+n-26) if ord(temp)+n >90 else chr(ord(temp)+n)
+
+      if temp.islower():
+        answer += chr(ord(temp)+n-26) if ord(temp)+n >122 else chr(ord(temp)+n)
+     
+    return answer

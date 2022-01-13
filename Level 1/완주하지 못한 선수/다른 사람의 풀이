@@ -1,0 +1,20 @@
+# 카운터 객체는 빼기가 된다는 것을 알 수 있었던 코드
+import collections
+
+def solution(participant, completion):
+    answer = collections.Counter(participant) - collections.Counter(completion)
+    return list(answer.keys())[0]
+
+# 해시의 내장함수 hash()를 이용하여 푼 코드
+def solution(participant, completion):
+    answer = ''
+    temp = 0
+    dic = {}
+    for part in participant:
+        dic[hash(part)] = part
+        temp += int(hash(part))
+    for com in completion:
+        temp -= hash(com)
+    answer = dic[temp]
+
+    return answer

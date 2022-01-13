@@ -1,0 +1,6 @@
+def average(list):
+    # 리스트의 길이가 0인 경우에 나올 수 있는 에러 방지
+    if len(list) == 0:
+        return 0
+
+    return sum(list) / len(list)

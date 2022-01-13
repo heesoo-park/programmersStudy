@@ -1,0 +1,8 @@
+# 충분한 길이의 리스트를 만들고 원하는 위치에서 잘라서 return하는 코드
+def water_melon(n):
+    s = "수박" * n
+    return s[:n]
+    
+# 몫과 나머지를 이용한 코드
+def water_melon(n):
+    return "수박"*(n//2) + "수"*(n%2)

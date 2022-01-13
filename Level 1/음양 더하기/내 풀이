@@ -1,0 +1,9 @@
+def solution(absolutes, signs):
+    answer = 0
+    i = 0
+    
+    for x in signs:
+        answer += absolutes[i] if x else -absolutes[i]
+        i += 1
+    
+    return answer

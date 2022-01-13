@@ -1,0 +1,25 @@
+def solution(strings, n):
+    # n번째 인덱스의 값을 기준으로 한번 정렬
+    middle_point = sorted(strings, key=lambda x : x[n])
+    answer = []
+    index = 0
+
+    for i in range(len(middle_point)-1):
+      # n번째 인덱스의 값이 같은 경우 넘어가기
+      if middle_point[i][n] == middle_point[i+1][n]:
+        continue
+      # n번째 인덱스의 값이 다른 경우 index부터 i+1까지 슬라이싱하고 정렬해서 answer배열에 넣기
+      # 시작지점 index의 값을 지금 i에 1을 더한 값으로 변경
+      else:
+        answer += sorted(middle_point[index:i+1])
+        index = i+1
+    
+    # index가 0이라는 것은 n번재 인덱스의 값이 모두 같다는 뜻이므로 정렬해서 전부다 넣어주면 된다.
+    if index == 0:
+      answer += sorted(middle_point)
+    # index가 0이 아니라는 것은 리스트 어딘가에서부터 마지막까지의 n번째 인덱스의 값이 같지만 answer리스트에 들어가지 못했다는 것이므로 
+    # index부터 마지막까지 슬라이싱하고 정렬해서 answer 리스트에 너허주면 된다.
+    else:
+      answer += sorted(middle_point[index:])
+
+    return answer

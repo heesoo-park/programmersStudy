@@ -1,0 +1,9 @@
+# 정렬 후 작은 것부터 차례대로 넣어보기
+def solution(d, budget):
+    answer = sorted(d)
+    count = 0
+    for i in range(len(d)):
+      if budget >= sum(answer[:i+1]):
+        count = i+1
+
+    return count

@@ -1,0 +1,28 @@
+def solution(answers):
+    check_answer = [0,0,0]
+    tester1 = [1, 2, 3, 4, 5]
+    tester2 = [2, 1, 2, 3, 2, 4, 2, 5]
+    tester3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]
+
+    # 주어진 리스트보다 길이가 짧은 리스트 복사해서 길이 늘리기
+    while len(tester1) < len(answers):
+      tester1.extend(tester1)
+    while len(tester2) < len(answers):
+      tester2.extend(tester2)
+    while len(tester3) < len(answers):
+      tester3.extend(tester3)
+      
+    # 리스트들을 비교해서 정답이면 1씩 더하기
+    for a, b in zip(tester1, answers):
+      if a == b:
+        check_answer[0] += 1
+    for a, b in zip(tester2, answers):
+      if a == b:
+        check_answer[1] += 1
+    for a, b in zip(tester3, answers):
+      if a == b:
+        check_answer[2] += 1
+    
+    # enumerate를 사용해서 가장 높은 값을 가진 인덱스들을 리턴
+    high_score = max(check_answer)
+    return  [i+1 for i, v in enumerate(check_answer) if v == high_score]

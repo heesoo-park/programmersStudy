@@ -1,0 +1,28 @@
+# 문자열을 리스트로 바꾸고 나머지 연산을 이용해서 리스트값을 바꿔서 해결하는 코드
+def caesar(s, n):
+    s = list(s)
+    for i in range(len(s)):
+        if s[i].isupper():
+            s[i]=chr((ord(s[i])-ord('A')+ n)%26+ord('A'))
+        elif s[i].islower():
+            s[i]=chr((ord(s[i])-ord('a')+ n)%26+ord('a'))
+
+    return "".join(s)
+    
+# 알파벳 문자열들을 만들고 리스트에 나머지 연산을 하며 조건에 맞는 값을 넣어서 해결하는 코드
+def caesar(s, n):
+    lower_list = "abcdefghijklmnopqrstuvwxyz"
+    upper_list = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+    result = []
+
+    for i in s:
+        if i is " ":
+            result.append(" ")
+        elif i.islower() is True:
+            new_ = lower_list.find(i) + n
+            result.append(lower_list[new_ % 26])
+        else:
+            new_ = upper_list.find(i) + n
+            result.append(upper_list[new_ % 26])
+    return "".join(result)

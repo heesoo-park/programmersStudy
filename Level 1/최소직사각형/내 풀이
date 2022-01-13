@@ -1,0 +1,8 @@
+# 정렬 후 열별로 최대값을 찾아서 return
+def solution(sizes):
+    for x in sizes:
+      x.sort()
+    a = max([i[0] for i in sizes])
+    b = max([i[1] for i in sizes])
+
+    return a*b
