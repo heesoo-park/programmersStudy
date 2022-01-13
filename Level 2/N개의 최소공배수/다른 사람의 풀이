@@ -1,0 +1,27 @@
+# fraction모듈에 있는 gcd함수를 사용한 코드
+from fractions import gcd
+
+def nlcm(num):      
+    answer = num[0]
+    # 최소공배수는 공배수 중 가장 작은 수 이므로 두 수를 곱한 것에 최대 공약수를 나눠주면 된다.
+    for n in num:
+        answer = n * answer / gcd(n, answer)
+
+    return answer
+    
+# gcd함수를 직접 만든 코드
+def gcd(a, b):
+    if b == 0:
+        return a
+    return gcd(b, a%b)
+
+def nlcm(num):
+    num.sort()
+    max_num = num[-1]
+    temp = 1
+    for i in range(len(num)):
+        # lcm = (a*b) / gcd (최소공배수 구하는 식)
+        # gcd = (a*b) / lcm (최대공약수 구하는 식)
+        temp = (num[i] * temp) / (gcd(num[i], temp))
+        
+    return temp
