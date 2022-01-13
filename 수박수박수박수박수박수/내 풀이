@@ -1,3 +1,0 @@
-def solution(n):
-    sentence = "수박"
-    return sentence*(n//2) if n%2 == 0 else sentence*(n//2)+sentence[0]

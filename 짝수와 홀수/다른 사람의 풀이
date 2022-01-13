@@ -1,9 +1,0 @@
-def evenOrOdd(num):
-    if (num%2):
-        return "Odd"
-    else:
-        return "Even"
-        
-# & 연산자로 비트 연산한 후 그 수가 ["Even", "Odd"] 배열의 인덱스가 됨
-def evenOrOdd(num):
-    return ["Even", "Odd"][num & 1]

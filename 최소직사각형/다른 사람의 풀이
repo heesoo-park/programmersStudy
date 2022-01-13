@@ -1,3 +1,0 @@
-# 행마다 큰 것을 고르고 그 중에 큰 값과 행마다 작은 값과 그 중에 큰 값을 곱해서 return
-def solution(sizes):
-    return max(max(x) for x in sizes) * max(min(x) for x in sizes)

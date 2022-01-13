@@ -1,7 +1,0 @@
-def findKim(seoul):
-    # .format을 사용한 코드
-    return "김서방은 {}에 있다".format(seoul.index('Kim'))
-    
-def solution(seoul):
-    # %d를 사용한 코드
-    return ('김서방은 %d에 있다' %seoul.index('Kim'))

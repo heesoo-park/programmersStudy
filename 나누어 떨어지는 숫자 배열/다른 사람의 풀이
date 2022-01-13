@@ -1,3 +1,0 @@
-def solution(arr, divisor): \
-  # 파이썬에서 or은 앞에가 참이면 해당값까지만 호출, 거짓이면 or 뒤의 내용까지 호출
-  return sorted([n for n in arr if n%divisor == 0]) or [-1]

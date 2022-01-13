@@ -1,2 +1,0 @@
-def number_generator(x, n):
-    return [i * x + x for i in range(n)]

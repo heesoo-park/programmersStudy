@@ -1,3 +1,0 @@
-def solution(price, money, count):
-    # 시그마 i 구하는 식인 n(n+1)/2를 사용함
-    return max(0,price*(count+1)*count//2-money)

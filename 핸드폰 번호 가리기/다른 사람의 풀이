@@ -1,9 +1,0 @@
-def hide_numbers(s):
-    return '*' * (len(s) - 4) + s[-4:]
-
-# 정규식을 사용한 코드(이해 못함)
-import re
-
-def hide_numbers(s):
-    p = re.compile(r'\d(?=\d{4})')
-    return p.sub("*", s, count = 0)

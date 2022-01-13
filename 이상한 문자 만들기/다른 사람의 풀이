@@ -1,5 +1,0 @@
-def toWeirdCase(s):
-    # 공백을 기준으로 자른 문자열을 열거형으로 바꾸고 조건에 맞는 형태로 바꾸는 것을 lambda식으로 표현
-    # map함수는 리스트의 요소를 지정된 함수로 처리하는 함수, 여기서는 lambda식을 쪼개진 문자열을 처리하는데 사용
-    # join함수는 쪼개져있는 리스트를 합치는데 사용
-    return " ".join(map(lambda x: "".join([a.lower() if i % 2 else a.upper() for i, a in enumerate(x)]), s.split(" ")))

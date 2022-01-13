@@ -1,9 +1,0 @@
-def solution(n):
-    answer = []
-    
-    # 1의 자릿수부터 리스트에 넣기 때문에 뒤집어진 상태로 들어가게 됨
-    while n/10 > 0:
-      answer.append(n%10)
-      n = n//10
-
-    return answer

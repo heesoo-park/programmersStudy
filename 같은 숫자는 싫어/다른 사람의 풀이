@@ -1,7 +1,0 @@
-def no_continuous(s):
-    a = []
-    # 리스트 a의 맨 뒤에 있는 값과 지금 값을 리스트로 만들어 비교해서 달라야 a에 넣기
-    for i in s:
-        if a[-1:] == [i]: continue
-        a.append(i)
-    return a

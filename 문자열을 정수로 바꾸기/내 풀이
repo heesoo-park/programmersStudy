@@ -1,3 +1,0 @@
-def solution(s):
-    # 조건문이 필요없음을, 그냥 int(s)만 써도 됐음을 다른 사람의 풀이들을 보고 앎
-    return -int(s[1:]) if s[0] == '-' else int(s)
