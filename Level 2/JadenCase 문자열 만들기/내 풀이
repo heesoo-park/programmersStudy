@@ -1,0 +1,42 @@
+# 테스트는 통과했지만 채점할 때는 런타임 에러가 뜬 코드
+def solution(s):
+    s_list = s.split(' ')
+    answer = ''
+    for x in s_list:
+      for i,c in enumerate(x):
+        if not c.isdigit():
+          break
+          
+      if x[0].isdigit():
+        answer += x
+      else:
+        answer += x[:i]+x[i:].capitalize()
+      answer += ' '
+
+    return answer[:-1]
+    
+# 리스트로 변환하지 않고 문자열을 그대로 둔 상태로 해결한 코드
+def solution(s):
+    index = 0
+    # flag는 첫문자만 대문자로 만들고 나머지는 소문자로 두기 위해 놔두 bool변수
+    flag = False
+    for i in range(len(s)):
+      flag = False
+
+      if s[i] == ' ':
+        index = 0
+        continue
+      
+      # 문자열 속 한 문자를 바꾸기 위한 코드가 참 길구만
+      if index==0 and s[i].isalpha():
+        s = s[0:i] + s[i:i+1].upper() + s[i+1:len(s)]
+        flag = True
+
+      if flag:
+        index += 1
+        continue
+
+      s = s[0:i] + s[i:i+1].lower() + s[i+1:len(s)]
+      index += 1
+
+    return s
