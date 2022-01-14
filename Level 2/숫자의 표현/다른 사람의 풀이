@@ -1,0 +1,5 @@
+# 등차수열의 합 공식을 기반으로 푼 코드라고 한다.
+# 하지만 이해가 잘 되지는 않는다
+# num의 약수 중에 홀수가 몇개 있냐는 문제와 같은 문제로 해석할 수 있다고 함(?)
+def expressions(num):
+    return len([i  for i in range(1,num+1,2) if num % i is 0])
