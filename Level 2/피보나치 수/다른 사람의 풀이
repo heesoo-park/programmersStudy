@@ -1,0 +1,15 @@
+# 내가 푼 것보다 더 간결하게 푼 코드
+def fibonacci(num):
+    a,b = 0,1
+    for i in range(num):
+        a,b = b,a+b
+    return a%1234567
+    
+# 재귀를 이용한 코드 
+cache = [-1]*100
+def fibonacci(num):
+    if num == 0: return 0
+    if num == 1: return 1
+    if cache[num] != -1: return cache[num]
+    cache[num] = fibonacci(num-1) + fibonacci(num-2)
+    return cache[num]%1234567
