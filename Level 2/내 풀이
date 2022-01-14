@@ -1,0 +1,4 @@
+def solution(s):
+    # 공백단위로 잘라서 정수형으로 만든 다음 리스트에 넣음
+    str_to_int = [int(i) for i in s.split(' ')]
+    return str(min(str_to_int)) + ' ' + str(max(str_to_int))
