@@ -1,0 +1,43 @@
+# 문자열도 그냥 count함수를 쓸 수 있구나라는 걸 안 코드
+def nextBigNumber(n):
+    num1 = bin(n).count('1')
+    while True:
+        n = n + 1
+        if num1 == bin(n).count('1'):
+            break
+    return n
+    
+# 이해는 못했지만 넣어놓은 코드(진행이 잘 이해되지 않음)
+def nextBigNumber(n):
+    answer = 0  
+    if not (1<=n and n <= 1000000) or n%1 != 0 or type(n) != type(1):
+        raise SyntaxError
+
+    binexpr = list(bin(n))[2:]
+
+    endzero = 0
+    middleone = 0
+
+    while "".join(binexpr).endswith('0'):
+        endzero += 1
+        binexpr.pop()
+    while "".join(binexpr).endswith('1'):
+        middleone += 1
+        binexpr.pop()
+
+    if "".join(binexpr).endswith('0'):
+        binexpr.pop()
+
+    binexpr.append('1')
+
+    while endzero>=0:
+        binexpr.append('0')
+        endzero -= 1
+
+    while middleone > 1:
+        binexpr.append('1')
+        middleone -= 1
+
+    answer = int("".join(binexpr), base = 2)
+
+    return answer
