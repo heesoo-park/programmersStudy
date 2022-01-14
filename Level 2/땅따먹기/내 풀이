@@ -1,0 +1,31 @@
+# 실패한 코드
+import copy
+
+def solution(land):
+    land1 = copy.deepcopy(land)
+    land2 = copy.deepcopy(land)
+    answer1 = 0
+    answer2 = 0
+    index = 0
+    for i in range(len(land1)-1):
+        index = land1[i].index(max(land1[i]))
+        land1[i+1][index] = 0
+        answer1 += land1[i][index]
+    
+    answer1 += max(land1[-1])
+
+    for j in range(len(land2)-1,0,-1):
+        index = land2[j].index(max(land2[j]))
+        land2[j-1][index] = 0
+        answer2 += land2[j][index]
+    
+    answer2 += max(land2[0])
+    return answer1 if answer1 >= answer2 else answer2
+    
+# 구글링하면서 얻은 아이디어만 가지고 구현하여 성공한 코드
+# DP문제는 친해지기 어렵다
+def solution(land):
+    for i in range(1,len(land)):
+      for j in range(len(land[i])):
+        land[i][j] += max(land[i-1][0:j]+land[i-1][j+1:])
+    return max(land[-1])
