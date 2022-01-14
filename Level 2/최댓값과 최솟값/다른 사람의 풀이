@@ -1,0 +1,12 @@
+def solution(s):
+    # map함수를 사용해서 길이가 짧아진 코드
+    s = list(map(int,s.split()))
+    return str(min(s)) + " " + str(max(s))
+
+# 리스트로 만들고 정렬을 함으로써 min, max함수를 사용하지 않고 해결한 코드
+def solution(s):
+    s_list=s.split(" ")
+    n = [int(i) for i in s_list]
+    n.sort()
+
+    return str(n[0]) + " " + str(n[len(n)-1])
