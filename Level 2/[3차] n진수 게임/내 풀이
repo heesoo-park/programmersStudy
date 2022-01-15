@@ -1,0 +1,34 @@
+import string
+# 필요한 문자들을 저장해놓은 문자열
+tmp = string.digits+string.ascii_uppercase
+
+def solution(n, t, m, p):
+    people = [[] for _ in range (m)]
+    index = 0
+    i = 0
+    
+    while 1:
+      length = convert(i,n)
+      for j in range(len(length)):
+        # 행을 돌아가면서 한 문자씩 넣기
+        people[index%m] += length[j]
+        if index%m == p-1:
+          t -= 1
+        index += 1
+        # 말해야 하는 숫자 개수를 채웠으면 반복문들을 탈출
+        if t == 0:
+          break
+      if t == 0:
+        break
+      else:
+        i+=1
+    # 순서에 맞는 행을 join으로 합쳐서 return
+    return ''.join(people[p-1])
+
+# 10진수->n진수 변환하는 
+def convert(num, base) :
+    q, r = divmod(num, base)
+    if q == 0 :
+        return tmp[r] 
+    else :
+        return convert(q, base) + tmp[r]
