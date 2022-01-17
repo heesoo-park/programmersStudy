@@ -1,0 +1,27 @@
+import re
+
+def solution(files):
+    # 함수를 하나 넣어놓음
+    # [a-z-. ]+ : 소문자와 -.(공백)을 묶는 것
+    # \d{,5} : 숫자 최대 5개 묶는 것
+    # .* : 나머지 전부다?
+    def key_function(fn):
+        head,number,tail = re.match(r'([a-z-. ]+)(\d{,5})(.*)',fn).groups()
+        # 정렬할 때 필요한 요소만 넘겨줌
+        return [head,int(number)]
+    # 넘겨받은 요소로 정렬해서 return
+    return sorted(files, key = lambda x: key_function(x.lower()))
+    
+import re
+
+def solution(files):
+    # 문제에서 원하는 형태로 자르기
+    files_init = [list(re.findall('([^0-9]+)([0-9]+)(.*)', file)[0]) for file in files]
+    # head부분을 소문자로 바꾸고 str형태인 nunber를 int로 변경해서 뒤에 붙이기
+    files_init = [file +[str(file[0]).lower()] + [int(file[1])] for file in files_init]
+    # number를 기준으로 정렬
+    files_init = sorted(files_init, key=lambda file : file[4])
+    # head를 기준으로 정렬
+    files_init = sorted(files_init, key=lambda file : file[3])
+    # 원래형태로 원상복구하고 return
+    return ["".join(file[0:3]) for file in files_init]
