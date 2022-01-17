@@ -1,0 +1,31 @@
+def solution(files):
+    answer = []
+    index = 0
+
+    for x in files:
+      for i in range(1,len(x)):
+        if x[i].isdigit() and not x[i-1].isdigit():
+          index = i
+        if x[i].isdigit():
+          #for문쓰기 싫어서 조건문으로 했더니 많이 길이가 늘어남
+          if x[i:i+5].isdigit():
+            answer.append([x[:index], int(x[index:i+5]), x[index:i+5], x[i+5:]])
+          elif x[i:i+4].isdigit():
+            answer.append([x[:index], int(x[index:i+4]), x[index:i+4], x[i+4:]])
+          elif x[i:i+3].isdigit():
+            answer.append([x[:index], int(x[index:i+3]), x[index:i+3], x[i+3:]])
+          elif x[i:i+2].isdigit():
+            answer.append([x[:index], int(x[index:i+2]), x[index:i+2], x[i+2:]])
+          elif x[i:i+1].isdigit():
+            answer.append([x[:index], int(x[index:i+1]), x[index:i+1], x[i+1:]])
+          break
+      index = 0
+    
+    # head쪽을 대문자로 바꾸고 정렬한 다음 number 오름차순으로 정렬하기
+    answer = sorted(answer, key = lambda x : (x[0].upper(), x[1]))
+    check = []
+    # 나눠져있는 문자열을 합치기
+    for x in answer:
+      x[1] = ''
+      check.append(''.join(x))
+    return check
