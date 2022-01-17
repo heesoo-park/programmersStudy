@@ -1,0 +1,14 @@
+# 리스트를 쓰면서 스택의 성질을 이용해 해결한 코드
+def is_pair(s):
+    st = list()
+    for c in s:
+        if c == '(':
+            st.append(c)
+
+        if c == ')':
+            try:
+                st.pop()
+            except IndexError:
+                return False
+
+    return len(st) == 0
