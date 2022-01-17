@@ -1,0 +1,12 @@
+def solution(s):
+    stack = 0
+    for i in s:
+      if stack == 0 and i == ')':
+        return False
+      
+      if i == '(':
+        stack += 1
+      else:
+        stack -= 1
+
+    return True if stack == 0 else False
