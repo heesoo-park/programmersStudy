@@ -1,0 +1,40 @@
+def solution(msg):
+    # 사전을 미리 생성
+    dic = {'A':1,'B':2,'C':3,'D':4,'E':5,'F':6,'G':7,'H':8,'I':9,'J':10,'K':11,'L':12,'M':13,'N':14,'O':15,'P':16,'Q':17,'R':18,'S':19,'T':20,'U':21,'V':22,'W':23,'X':24,'Y':25,'Z':26}
+    answer = []
+    # 자를 문자열을 저장해놓는 변수
+    div_msg = ''
+    flag = False
+    i = 0
+    # 다음에 사전에 추가되는 문자열의 값
+    value = 27
+    
+    # msg가 다 없어질 때까지 반복
+    while len(msg) >= 2:
+      while not flag:
+        div_msg += msg[i]
+        # 사전에 지금 문자열이 존재하는 지 확인
+        if div_msg in dic:
+          i += 1
+          # 지금 문자열이 msg와 길이가 같다면 전체이기 때문에 바로 반복문 탈출
+          if len(div_msg) == len(msg):
+            answer.append(dic[msg[:i]])
+            msg = ''
+            break
+        else:
+          flag = True
+          answer.append(dic[msg[:i]])
+          # 지금 문자열에서 사전에 있었던 거만큼만 자르고 나머지만 msg에 다시 넣기
+          msg = msg[i:]
+          i = 0
+
+      dic[div_msg] = value
+      value += 1
+      div_msg = ''
+      flag = False
+    
+    # 길이가 1일 때 반복문을 나오면 사용되는 
+    if len(msg) != 0:
+      answer.append(dic[msg])
+
+    return answer
