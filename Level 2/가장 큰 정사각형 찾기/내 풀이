@@ -45,3 +45,24 @@ def solution(board):
               board[i][j] = list[-1] + 1
 
     return max(map(max, board))**2
+
+# 구글링을 했지만 진행순서는 동일했고 오히려 내가 더 추가한 부분만 지우니 성공했다.
+def solution(board):
+    # 가로로 한 줄만 주어진 경우
+    if len(board) == 1 and 1 in board[0]:
+      return 1
+    # 세로로 한 줄만 주어진 경우
+    if len(board[0]) == 1 and [1] in board:
+      return 1
+    
+    # 그 외의 경우
+    for i in range(1, len(board)):
+      for j in range(1, len(board[0])):
+        # 현재 칸이 1인 경우
+        if board[i][j]:
+          # 현재 칸 왼쪽, 위쪽, 왼쪽 위의 칸이 모두 1이 아닌 경우
+          if board[i][j-1] and board[i-1][j] and board[i-1][j-1]:
+            board[i][j] = min(board[i-1][j-1], board[i-1][j], board[i][j-1]) + 1 
+    
+    # 2차원 리스트 중에서 가장 큰 값을 가져와서 제곱한 다음 return
+    return max(map(max, board))**2
