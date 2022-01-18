@@ -1,0 +1,26 @@
+# 12,13,14,15,18,19번과 효율성문제를 통과하지 못함(효율성 테스트에서는 시간초과가 뜸)
+def solution(board):
+    answer = 0
+    sum_box = []
+    box_area = 0
+    # 정사각형 사이즈별로 board순회
+    for i in range(1, len(board)+1):
+      for j in range(len(board)):
+        for k in range(len(board[0])-i+1):
+          # 사이즈에 맞게 열마다 더해서 저장해놓기
+          sum_box.append(sum(board[j][k:k+i]))
+      print(sum_box)
+
+      # 저장해놓은 값을 가지고 정사각형모양만큼 더하는 반복문
+      for j in range((len(board)-i+1)*(len(board[0])-i+1)):
+        for k in range(i):
+          box_area += sum_box[j+(len(board[0])-i+1)*k]
+        print(box_area)
+        # 사이즈의 값이 제곱수인지 확인하고 맞다면 answer에 넣기(지금 들어있는 값보다 크면)
+        if int(box_area ** 0.5) ** 2 == box_area and box_area > answer:
+          answer = box_area
+        box_area = 0
+      
+      sum_box = []
+    
+    return answer
