@@ -1,0 +1,27 @@
+def solution(dirs):
+    # 네 방향의 좌표를 사전으로 표현
+    four_dirs = {'U':[0,1],'D':[0,-1],'L':[-1,0],'R':[1,0]}
+    # 초기 좌표이자 반복문에서 좌표가 갱신될 때마다 사용되는 변수
+    cur_pos = [0,0]
+    # [시작좌표, 끝좌표]가 저장되는 리스트
+    answer = []
+    
+    # 주어진 명령개수만큼 도는 반복문
+    for x in dirs:
+      # 명령에 맞게 현재 좌표에서 계산하는 부분
+      cal_pos = [i+j for i,j in zip(cur_pos, four_dirs[x])]
+      
+      # 계산된 좌표가 전제된 좌표계를 벗어나는 경우 무시하고 다음 반복문 실행
+      if cal_pos[0] < -5 or cal_pos[0] > 5:
+        continue
+      if cal_pos[1] < -5 or cal_pos[1] > 5:
+        continue
+      # answer리스트에 지금 들어가야하는 값이 있으면 무시하고 없으면 넣기(왔다갔다하는 경우도 조건에 추가)
+      if [cur_pos, cal_pos] not in answer and [cal_pos, cur_pos] not in answer:
+        answer.append([cur_pos, cal_pos])
+      
+      # 계산 좌표를 현재 좌표로 저장
+      cur_pos = cal_pos
+      
+    # answer 리스트 길이만큼을 return
+    return len(answer)
