@@ -1,0 +1,18 @@
+def solution(skill, skill_trees):
+    answer = 0
+    trees = []
+    
+    # skill에 들어있는 알파벳만 뽑아서 저장(이렇게 하면 최소 0개부터 최대 skill의 길이만큼 저장됨)
+    for x in skill_trees:
+      trees.append([y for y in x if y in list(skill)])
+    
+    # trees의 요소를 순회하면서 순서에 맞게 리스트가 구성되어 있는지 확인하는 부분
+    for x in trees:
+      num = 0
+      for i in range(len(x)):
+        if x[i] == skill[i]:
+          num += 1
+      if num == len(x):
+        answer += 1
+      
+    return answer
