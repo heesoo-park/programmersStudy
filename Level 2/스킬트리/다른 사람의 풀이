@@ -1,0 +1,30 @@
+# 완벽한 진행 이해를 하지 못한 코드
+def solution(skill, skill_trees):
+    answer = 0
+
+    for skills in skill_trees:
+        skill_list = list(skill)
+        
+        # for-else문을 사용함
+        for s in skills:
+            # in이 순서도 생각하면서 포함여부를 확인해주는 건가 궁금해지는 부분
+            if s in skill:
+                # skill의 마지막 원소를 빼는 부분
+                if s != skill_list.pop(0):
+                    break
+        else:
+            answer += 1
+
+    return answer
+
+# 내가 짠 코드와 비슷한 진행과 
+def solution(skill,skill_tree):
+    answer=0
+    for i in skill_tree:
+        skillist=''
+        for z in i:
+            if z in skill:
+                skillist+=z
+        if skillist==skill[0:len(skillist)]:
+            answer+=1
+    return answer
