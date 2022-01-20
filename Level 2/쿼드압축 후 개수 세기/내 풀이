@@ -1,0 +1,48 @@
+# 로그를 구하기 위해 import
+import math
+
+def solution(arr):
+  answer = [0,0]
+  
+  # 2^n x 2^n 크기의 2차원 정수 배열의 n을 줄여가면서 반복 
+  for size in range(int(math.log2(len(arr))),0,-1):
+    # 반복문마다 줄어드는 2차원 정수 배열을 저장하고 arr로 복사
+    resizing_arr = []
+    # 초기 좌표
+    x,y = 1,1
+    # 2 x 2 크기를 검사한 후 좌표 이동할 때 쓰이는 변수
+    count = 1
+    # 현재 크기의 2차원 정수 배열에서 겹치지 않고 2 x 2 크기의 정사각형의 개수만큼 반복
+    for i in range(1, 4**(size-1)+1):
+      # 모두 같은 숫자일때
+      if (arr[x][y] == arr[x-1][y]) and (arr[x-1][y] == arr[x-1][y-1]) and (arr[x-1][y-1] == arr[x][y-1]):
+        resizing_arr.append(arr[x][y])
+      # 다른 숫자가 있을 때
+      else:
+        temp = [arr[x][y], arr[x-1][y], arr[x-1][y-1], arr[x][y-1]]
+        answer[0] += temp.count(0)
+        answer[1] += temp.count(1)
+        # [0,0,0,1] 과 [1,1,1,1] 의 결과가 1로 동일하게 나와서 구별하기 위해 31이라는 숫자를 집어넣음
+        resizing_arr.append(temp.count(1) if temp.count(1) > 1 else 31)
+      
+      # 좌표이동할 때 쓰이는 조건문
+      if count % 2**(size-1) == 0:
+        x += 2
+        y = 1
+      else:
+        y += 2
+      
+      count += 1
+
+    arr = []
+    # 1차원 배열인 resizing_arr 을 2^(n-1) x 2^(n-1) 크기의 2차원 배열로 바꾸는 반복문
+    for i in range(2**(size-1)):
+      arr += [resizing_arr[2**(size-1)*i:(2**(size-1))*(i+1)]]
+  
+  # 초기 형태에서 모두 같은 숫자만 있을 때 사용되는 
+  if [1] in arr and len(arr) == 1 and len(arr[0]) == 1:
+    return [0,1]
+  elif [0] in arr and len(arr) == 1 and len(arr[0]) == 1:
+    return [1,0]
+    
+  return answer
