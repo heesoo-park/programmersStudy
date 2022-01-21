@@ -1,0 +1,11 @@
+def solution(n, left, right):
+    answer = []
+    
+    # i를 n으로 나눠서 몫과 나머지를 얻으면 해당 i의 좌표값으로 볼 수 있다. 이 중에 큰 값이 그 위치에 들어갈 (값-1)이므로 +1해서 answer에 추가
+    for i in range(left, right+1):
+      answer.append(max(divmod(i, n))+1)
+
+    return answer
+
+# 한 줄코딩(코드 진행은 위의 코드와 같음)
+solution = lambda x,y,z: [l//x+1 if l%x<(l//x) else l%x+1 for l in range(y,z+1)]
