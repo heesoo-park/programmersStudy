@@ -1,0 +1,14 @@
+# 문자열도 리스트로 할 수 있는데 괜히 리스트로 변환하면서 진행해 코드 길이만 늘어난 것 같다
+def solution(s):
+    answer = [0, 0]
+    list_s = list(s)
+    zero = {'0'}
+    
+    while list_s != ['1']:
+      answer[1] += list_s.count('0')
+      list_s = [x for x in list_s if x not in zero]
+      temp = sum(int(x) for x in list_s)
+      list_s = list(str(bin(temp))[2:])
+      answer[0] += 1
+
+    return answer
