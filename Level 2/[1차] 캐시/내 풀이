@@ -1,0 +1,40 @@
+def solution(cacheSize, cities):
+    answer = 0
+    cur_num = 0
+    cache = [] 
+    LRU = []
+    
+    # 캐시공간이 0일 때는 예외처리
+    if cacheSize == 0:
+      return len(cities)*5
+    
+    for x in cities:
+      # 캐시가 다 차지 않은 경우
+      if cur_num != cacheSize:
+        # 캐시 hit인 경우
+        if x.lower() in cache:
+          answer += 1
+          LRU = [i for i in LRU if i not in {x.lower()}]
+          LRU.append(x.lower())
+        # 캐시 miss인 경우
+        else:
+          cache.append(x.lower())
+          answer += 5
+          cur_num += 1
+          LRU.append(x.lower())
+      # 캐시가 다 찬 경우
+      else:
+        # 캐시 hit인 경우
+        if x.lower() in cache:
+          answer += 1
+          LRU = [i for i in LRU if i not in {x.lower()}]
+          LRU.append(x.lower())
+        # 캐시 miss인 경우
+        else:
+          answer += 5
+          cache = [i for i in cache if i not in {LRU[0]}]
+          cache.append(x.lower())
+          LRU = LRU[1:]
+          LRU.append(x.lower())
+
+    return answer
