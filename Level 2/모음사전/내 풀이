@@ -1,0 +1,35 @@
+# 처음으로 짠 조건문을 여러 개 사용한 코드
+def solution(word):
+    first_digit = {'A' : 1, 'E' : 782, 'I' : 1563, 'O' : 2344, 'U' : 3125}
+    second_digit = {'A' : 1, 'E' : 157, 'I' : 313, 'O' : 469, 'U' : 625}
+    third_digit = {'A' : 1, 'E' : 32, 'I' : 63, 'O' : 94, 'U' : 125}
+    fourth_digit = {'A' : 1, 'E' : 7, 'I' : 13, 'O' : 19, 'U' : 25}
+    fifth_digit = {'A' : 1, 'E' : 2, 'I' : 3, 'O' : 4, 'U' : 5}
+    
+    answer = 0
+
+    if len(word) == 1:
+      answer += first_digit[word]
+    elif len(word) == 2:
+      answer = first_digit[word[0]]+ second_digit[word[1]]
+    elif len(word) == 3:
+      answer = first_digit[word[0]]+ second_digit[word[1]]+ third_digit[word[2]]
+    elif len(word) == 4:
+      answer = first_digit[word[0]]+ second_digit[word[1]]+ third_digit[word[2]]+ fourth_digit[word[3]]
+    elif len(word) == 5:
+      answer = first_digit[word[0]] + second_digit[word[1]]+ third_digit[word[2]]+ fourth_digit[word[3]]+ fifth_digit[word[4]]
+
+    return answer
+# 좀 더 간단하게 고친 코드
+def solution(word):
+    first_digit = {'A' : 1, 'E' : 782, 'I' : 1563, 'O' : 2344, 'U' : 3125}
+    second_digit = {'A' : 1, 'E' : 157, 'I' : 313, 'O' : 469, 'U' : 625}
+    third_digit = {'A' : 1, 'E' : 32, 'I' : 63, 'O' : 94, 'U' : 125}
+    fourth_digit = {'A' : 1, 'E' : 7, 'I' : 13, 'O' : 19, 'U' : 25}
+    fifth_digit = {'A' : 1, 'E' : 2, 'I' : 3, 'O' : 4, 'U' : 5}
+    digits = [first_digit, second_digit, third_digit, fourth_digit, fifth_digit]
+    answer = 0
+
+    for i in range(len(word)):
+      answer += digits[i][word[i]]
+    return answer
