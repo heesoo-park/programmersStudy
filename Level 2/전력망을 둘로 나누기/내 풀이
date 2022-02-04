@@ -1,0 +1,11 @@
+# 예시만 풀 수 있었던 야매코드
+def solution(n, wires):
+    tree = [0]*n
+    answer = 0
+
+    for x in wires:
+      if tree[x[0]-1] != 0:
+        answer += 1
+      tree[x[0]-1] = x[1]
+      
+    return answer
