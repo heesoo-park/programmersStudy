@@ -1,0 +1,44 @@
+# 정확성 테스트는 통과했지만 효율성 테스트는 통과하지 못한 코드
+def solution(prices):
+    answer = [0]*len(prices)
+    flag = [False]*len(prices)
+    for i in range(len(prices)-1):
+        answer[i] += 1
+        for j in range(i):
+            if prices[j] <= prices[i] and flag[j] == False:
+                answer[j] += 1
+            else:
+                flag[j] = True
+
+    return answer
+    
+# 무지성으로 짜고 실패한 코드
+def solution(prices):
+    answer = [0]*len(prices)
+
+    for i in range(len(prices)-1,0,-1):
+        if  prices[i-1] > prices[i]:
+            answer[i-1] = 1
+        elif prices[i-1] <= prices [i]:
+            answer[i-1] = len(prices)-i
+
+    return answer
+    
+# 구글링을 통해 얻은 코드 deque를 사용함.
+# popleft함수가 복잡도가 낮아서 이중 for문이어도 O(n^2)이 안 되는 것 같다
+from collections import deque
+
+def solution(prices):
+    answer = []
+    prices = deque(prices)
+
+    while prices:
+        price = prices.popleft()
+        t_price = 0
+        for x in prices:
+            t_price += 1
+            if price > x:
+                break
+        answer.append(t_price)
+    
+    return answer
