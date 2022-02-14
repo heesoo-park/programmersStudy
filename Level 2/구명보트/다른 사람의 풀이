@@ -1,0 +1,14 @@
+# 범위를 줄여나가면서 계산한 코드
+# 짝 지었을때만 2명씩 나가니까 전체 인원에서 짝지은 수만 빼주면 보트의 수
+def solution(people, limit) :
+    answer = 0
+    people.sort()
+
+    a = 0
+    b = len(people) - 1
+    while a < b :
+        if people[b] + people[a] <= limit :
+            a += 1
+            answer += 1
+        b -= 1
+    return len(people) - answer
