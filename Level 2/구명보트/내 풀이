@@ -1,0 +1,35 @@
+# 정확성 테스트는 통과했지만 O(n^2)이라 그런지 효율성 테스트는 통과하지 못함
+def solution(people, limit):
+    people = sorted(people, reverse=True)
+    boats = [[limit,0]]
+    max_index = 0
+
+    for x in people:
+        for i in range(max_index+1):
+            if boats[i][0] >= x and boats[i][1] != 2:
+                boats[i][0] -= x
+                boats[i][1] += 1
+                if i == max_index:
+                    boats.append([limit, 0])
+                    max_index += 1
+                break
+
+    return len(boats) - 1
+    
+# deque를 사용한 코드. 위에 반복문에 비해서 매우 빠름
+from collections import deque
+
+def solution(people, limit):
+    people = sorted(people, reverse=True)
+    deq = deque(people)
+    boats = 0
+
+    while len(deq)>=2:
+        if limit-deq[0] >= deq[-1]:
+            deq.pop()
+            deq.popleft()
+        else:
+            deq.popleft()
+        boats += 1
+
+    return boats if len(deq) == 0 else boats+1
