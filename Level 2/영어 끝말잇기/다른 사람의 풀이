@@ -1,0 +1,7 @@
+def solution(n, words):
+    # 왼쪽에 단어와 비교하며 반복문 진행
+    # for-else 문을 이용해 반복문을 이상없이 탈출했을 때 [0,0]을 return하도록 함
+    for p in range(1, len(words)):
+        if words[p][0] != words[p-1][-1] or words[p] in words[:p]: return [(p%n)+1, (p//n)+1]
+    else:
+        return [0,0]
