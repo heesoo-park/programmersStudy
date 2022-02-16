@@ -1,0 +1,29 @@
+# 이해 못 한 코드
+def solution(n):
+    dx=[0,1,-1];dy=[1,0,-1]
+    b=[[0]*i for i in range(1,n+1)]
+    x,y=0,0;num=1;d=0
+    while num<=(n+1)*n//2:
+        b[y][x]=num
+        ny=y+dy[d];nx=x+dx[d];num+=1
+        if 0<=ny<n and 0<=nx<=ny and b[ny][nx]==0:y,x=ny,nx
+        else:d=(d+1)%3;y+=dy[d];x+=dx[d]
+    return sum(b,[])
+
+# 내가 푼 것과 비슷하지만 모듈사용한 것과 이차원 리스트를 선언하고 사용했다는 것이 좀 다른 점인듯하다.
+from itertools import chain as SEX
+def solution(n):
+    [row, col, cnt] = [-1, 0, 1]
+    board = [[None] * i for i in range(1, n+1)]
+    for i in range(n):
+        for _ in range(n-i):
+            if i % 3 == 0:
+                row += 1
+            elif i % 3 == 1:
+                col += 1
+            else:
+                row -= 1
+                col -= 1
+            board[row][col] = cnt
+            cnt += 1
+    return list(SEX(*board))
