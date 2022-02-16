@@ -1,0 +1,54 @@
+def solution(n):
+    # 각 층마다 들어갈 숫자들을 저장하는 리스트
+    list = [[] for _ in range(n)]
+    # 위의 리스트를 한 줄로 모아 return할 리스트
+    answer = []
+    # 리스트에 들어가야 하는 현재 숫자
+    num = 1
+    # 지금 수행해야하는 루틴을 정하는 변수
+    flag = 0
+    
+    cur_row = -1
+    cur_left = -1
+    cur_right = -1
+    
+    for i in range(n,0,-1):
+        # 왼쪽아래로 진행하는 루틴
+        if flag%3 == 0:
+            cur_left += 1
+            for _ in range(i):
+                cur_row += 1
+                # 중간에 들어가야하는 숫자들을 위한 조건문
+                if list[cur_row] != []:
+                    list[cur_row].insert(cur_left,num)
+                else:
+                    list[cur_row].append(num)
+                num += 1
+        # 오른쪽로 진행하는 루틴
+        elif flag%3 == 1:
+            for j in range(i):
+                # 중간에 들어가야하는 숫자들을 위한 조건문
+                if cur_row != n-1:
+                    list[cur_row].insert(cur_left+1+j,num)
+                else:
+                    list[cur_row].append(num)
+                num += 1
+        # 오른쪽 위로 진행하는 루틴
+        elif flag%3 == 2:
+            cur_right += 1
+            for j in range(i):
+                cur_row -= 1
+                # 중간에 들어가야하는 숫자들을 위한 조건문
+                if cur_right != 0:
+                    list[cur_row].insert(len(list[cur_row])-cur_right,num)
+                else:
+                    list[cur_row].append(num)
+                num += 1
+            
+        flag = flag+1 if flag+1 != n else 0
+    
+    # 각 층마다 저장된 숫자들을 한 줄로 만드는 반복문
+    for x in list:
+        for y in x:
+            answer.append(y)
+    return answer
